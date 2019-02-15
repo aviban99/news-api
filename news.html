@@ -1,0 +1,32 @@
+<html>
+    <body>
+            <h1>Get all the latest News Update at a go!</h1>
+            <div id="news"></div>
+        
+    </body>
+    <script>
+        let d1 = document.getElementById("news");
+        let url ='https://newsapi.org/v2/top-headlines?' +
+          'country=in&' +
+          'apiKey=ca8f5a853d80438783f3d0cfc28d8de7' ;
+          fetch(url).then(function(resp){
+              return resp.json();
+          }).then(function(resp){
+              resp.articles.forEach(ce => {
+                  populate(ce);
+                  console.log(ce);
+              })
+          }).catch(function(e){
+              console.log(e);
+          })
+          function populate(c){
+              var inDiv = document.createElement("div");
+              inDiv.innerHTML = `<h3>${c.title}</h3><p><a href="${c.url}">${c.url}</a></p>` ; 
+              d1.append(inDiv);
+          }
+    </script>
+</html>
+
+
+
+
